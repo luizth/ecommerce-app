@@ -1,0 +1,11 @@
+# Data
+admin/.dbdata
+
+# IDE
+.idea/
+
+# Environment
+venv/
+
+# Pycache
+admin/admin/__pycache__/
