@@ -1,6 +1,16 @@
-POST http://localhost:8000/api/hello/
+### test_get_users
+GET http://localhost:8000/api/users
+Accept: application/json
+
+### test_register_user
+POST http://localhost:8000/api/register
 Content-Type: application/json
 
-{}
-
+{
+  "first_name": "Julia",
+  "last_name": "Peth",
+  "email": "peth@gmail.com",
+  "password": 1,
+  "password_confirm": 1
+}
 ###

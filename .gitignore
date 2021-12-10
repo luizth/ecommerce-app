@@ -11,6 +11,9 @@ admin/docker-compose.yaml
 admin/.dbdata
 admin/db.sqlite3
 
+# Migrations
+admin/users/migrations/
+
 # Pycache
 admin/admin/__pycache__/
 admin/users/__pycache__/
