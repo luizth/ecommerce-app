@@ -1,12 +1,18 @@
-# Data
-admin/.dbdata
-
 # IDE
 .idea/
 
 # Environment
 venv/
 
+# Docker
+admin/docker-compose.yaml
+
+# Data
+admin/.dbdata
+admin/db.sqlite3
+
 # Pycache
 admin/admin/__pycache__/
 admin/users/__pycache__/
+admin/users/migrations/__pycache__/
+tests/__pycache__/
