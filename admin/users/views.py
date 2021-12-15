@@ -2,14 +2,15 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
 
-from .models import User
 from .serializers import UserSerializer
+
+from .models import User
 
 
 @api_view(['GET'])
 def get(req):
-    users = User.objects.all()
-    return Response(users)
+    serializer = UserSerializer(User.objects.all(), many=True)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
