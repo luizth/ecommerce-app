@@ -13,3 +13,12 @@ Content-Type: application/json
   "password": 1,
   "password_confirm": 1
 }
+
+### test_login
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "gpanno@gmail.com",
+  "password": 1
+}
