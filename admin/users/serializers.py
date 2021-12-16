@@ -1,6 +1,19 @@
 from rest_framework import serializers
 
-from .models import User
+from .models import User, Permission
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = '__all__'
+
+    """
+    def create(self, validated_data):
+        instance = self.Meta.model(**validated_data)
+        instance.save()
+        return instance
+    """
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,7 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """
-        Receives an dictionary with: first_name, last_name, email, password
+        Receives a dictionary with: first_name, last_name, email, password
         :param validated_data: dict
         :return: User
         """
