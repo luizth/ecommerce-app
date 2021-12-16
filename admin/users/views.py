@@ -41,11 +41,21 @@ def login(req):
     if not user.check_password(password):
         raise exceptions.AuthenticationFailed('Incorrect password.')
 
-    response = Response('')
+    response = Response()
     token = generate_access_token(user)
     response.set_cookie(key='jwt', value=token, httponly=True)
     response.data = {
         'jwt': token
+    }
+    return response
+
+
+@api_view(['POST'])
+def logout(_):
+    response = Response()
+    response.delete_cookie(key='jwt')
+    response.data = {
+        'message': 'Success'
     }
     return response
 
