@@ -22,3 +22,7 @@ Content-Type: application/json
   "email": "gpanno@gmail.com",
   "password": 1
 }
+
+### test_login
+GET http://localhost:8000/api/user
+Content-Type: application/json

@@ -4,13 +4,13 @@ from rest_framework.response import Response
 from rest_framework import exceptions
 from rest_framework.views import APIView
 
-from .authentication import generate_access_token
+from .authentication import generate_access_token, JWTAuthentication
 from .models import User
 from .serializers import UserSerializer
 
 
 @api_view(['GET'])
-def get(req):
+def users(req):
     serializer = UserSerializer(User.objects.all(), many=True)
     return Response(serializer.data)
 
@@ -48,3 +48,15 @@ def login(req):
         'jwt': token
     }
     return response
+
+
+class AuthenticatedUser(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, req):
+        serializer = UserSerializer(req.user)
+
+        return Response({
+            'data': serializer.data
+        })
