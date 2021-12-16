@@ -11,7 +11,7 @@
       "first_name": "Admin",
       "last_name": "Admin",
       "email": "admin@admin.com",
-      "password": "pbkdf2_sha256$216000$ENeYa1J9BOrD$cqT41Xdqr8zgGrEC9SVa8e69WZOqdspNhvzbUZAGfGc=",
+      "password": "pbkdf2_sha256$216000$UNyBsMqpjevi$CMRJ+0hd1rnwojBulhDYraueoQ79nNLjsjSP+mqW+Uc=",
       "role": 1,
       "groups": [],
       "user_permissions": []
@@ -29,7 +29,7 @@
       "first_name": "Editor",
       "last_name": "Editor",
       "email": "editor@editor.com",
-      "password": "pbkdf2_sha256$216000$ENeYa1J9BOrD$cqT41Xdqr8zgGrEC9SVa8e69WZOqdspNhvzbUZAGfGc=",
+      "password": "pbkdf2_sha256$216000$UNyBsMqpjevi$CMRJ+0hd1rnwojBulhDYraueoQ79nNLjsjSP+mqW+Uc=",
       "role": 2,
       "groups": [],
       "user_permissions": []
@@ -47,7 +47,7 @@
       "first_name": "Viewer",
       "last_name": "Viewer",
       "email": "viewer@viewer.com",
-      "password": "pbkdf2_sha256$216000$ENeYa1J9BOrD$cqT41Xdqr8zgGrEC9SVa8e69WZOqdspNhvzbUZAGfGc=",
+      "password": "pbkdf2_sha256$216000$UNyBsMqpjevi$CMRJ+0hd1rnwojBulhDYraueoQ79nNLjsjSP+mqW+Uc=",
       "role": 3,
       "groups": [],
       "user_permissions": []
