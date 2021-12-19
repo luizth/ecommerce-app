@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import User, Permission
+from .models import User, Permission, Role
 
 
 class PermissionSerializer(serializers.ModelSerializer):
@@ -14,6 +14,14 @@ class PermissionSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     """
+
+
+class RoleSerializer(serializers.ModelSerializer):
+    permissions = PermissionSerializer(many=True)  # This makes the permissions of Role beeing displayed as objects
+
+    class Meta:
+        model = Role
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -5,8 +5,8 @@ from rest_framework import exceptions, viewsets
 from rest_framework.views import APIView
 
 from .authentication import generate_access_token, JWTAuthentication
-from .models import User, Permission
-from .serializers import UserSerializer, PermissionSerializer
+from .models import User, Permission, Role
+from .serializers import UserSerializer, PermissionSerializer, RoleSerializer
 
 
 # NOT BEEING USED
@@ -83,3 +83,31 @@ class PermissionAPIView(APIView):
         return Response({
             'data': serializer.data
         })
+
+
+class RoleViewSet(viewsets.ViewSet):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def list(self, _):
+        serializer = RoleSerializer(Role.objects.all(), many=True)
+
+        return Response({
+            'data': serializer.data
+        })
+
+    def create(self, req):
+        pass
+
+    def retreive(self, req, pk=None):
+        serializer = RoleSerializer(Role.objects.get(pk=pk))
+
+        return Response({
+            'data': serializer.data
+        })
+
+    def update(self, req, pk=None):
+        pass
+
+    def destroy(self, req, pk=None):
+        pass
