@@ -16,6 +16,11 @@ admin/users/migrations/
 
 # Pycache
 admin/admin/__pycache__/
+
 admin/users/__pycache__/
+admin/users/lib/__pycache__/
+admin/users/lib/utils/__pycache__/
+
 admin/users/migrations/__pycache__/
+
 tests/__pycache__/
