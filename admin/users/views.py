@@ -1,12 +1,14 @@
+from rest_framework import exceptions, viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import exceptions, viewsets
 from rest_framework.views import APIView
 
 from .authentication import generate_access_token, JWTAuthentication
 from .models import User, Permission, Role
 from .serializers import UserSerializer, PermissionSerializer, RoleSerializer
+
+from .lib.utils.logger import Logger
 
 
 # NOT BEEING USED
@@ -97,17 +99,35 @@ class RoleViewSet(viewsets.ViewSet):
         })
 
     def create(self, req):
-        pass
+        serializer = RoleSerializer(data=req.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
-    def retreive(self, req, pk=None):
-        serializer = RoleSerializer(Role.objects.get(pk=pk))
+        return Response({
+            'data': serializer.data
+        }, status=status.HTTP_201_CREATED)
+
+
+    def retreive(self, _, pk=None):
+        role = Role.objects.get(pk=pk)
+        serializer = RoleSerializer(role)
 
         return Response({
             'data': serializer.data
         })
 
     def update(self, req, pk=None):
-        pass
+        role = Role.objects.get(pk=pk)
+        serializer = RoleSerializer(instance=role, data=req.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({
+            'data': serializer.data
+        }, status=status.HTTP_202_ACCEPTED)
 
     def destroy(self, req, pk=None):
-        pass
+        role = Role.objects.get(pk=pk)
+        role.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
