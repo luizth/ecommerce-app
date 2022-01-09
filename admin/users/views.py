@@ -109,7 +109,11 @@ class RoleViewSet(viewsets.ViewSet):
 
 
     def retreive(self, _, pk=None):
-        role = Role.objects.get(pk=pk)
+        try:
+            role = Role.objects.get(pk=pk)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
         serializer = RoleSerializer(role)
 
         return Response({
@@ -117,7 +121,11 @@ class RoleViewSet(viewsets.ViewSet):
         })
 
     def update(self, req, pk=None):
-        role = Role.objects.get(pk=pk)
+        try:
+            role = Role.objects.get(pk=pk)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
         serializer = RoleSerializer(instance=role, data=req.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -127,7 +135,11 @@ class RoleViewSet(viewsets.ViewSet):
         }, status=status.HTTP_202_ACCEPTED)
 
     def destroy(self, req, pk=None):
-        role = Role.objects.get(pk=pk)
+        try:
+            role = Role.objects.get(pk=pk)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
         role.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
