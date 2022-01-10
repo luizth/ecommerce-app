@@ -1,4 +1,4 @@
-from rest_framework import exceptions, viewsets, status
+from rest_framework import exceptions, viewsets, status, generics, mixins
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -143,3 +143,36 @@ class RoleViewSet(viewsets.ViewSet):
         role.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UserGenericAPIView(
+    generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin,
+    mixins.UpdateModelMixin, mixins.DestroyModelMixin
+):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get(self, req, pk=None):
+        if pk:
+            return Response({
+                'data': self.retrieve(req, pk).data
+            })
+
+        return Response({
+            'data': self.list(req).data
+        })
+
+    def post(self, req):
+        return Response({
+            'data': self.create(req).data
+        })
+
+    def put(self, req, pk=None):
+        return Response({
+            'data': self.update(req, pk).data
+        })
+
+    def delete(self, req, pk=None):
+        return Response(self.destroy(req, pk))
