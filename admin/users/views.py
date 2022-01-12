@@ -185,3 +185,31 @@ class UserGenericAPIView(
 
     def delete(self, req, pk=None):
         return Response(self.destroy(req, pk))
+
+
+class ProfileInfoAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def put(self, req, pk=None):
+        user = req.user
+        serializer = UserSerializer(user, data=req.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+class ProfilePasswordAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def put(self, req, pk=None):
+        user = req.user
+
+        if req.data['password'] != req.data['password_confirm']:
+            raise exceptions.ValidationError('Passwords do not match')
+
+        serializer = UserSerializer(user, data=req.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)

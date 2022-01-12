@@ -20,5 +20,8 @@ services:
       MYSQL_DATABASE: django_admin
       MYSQL_USER: root
       MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - .dbdata:/var/lib/mysql
+    ports:
+      - 33066:3306
