@@ -13,8 +13,9 @@ $ docker-compose exec admin_api sh
 ### Run migrations
 
 $ python3 manage.py makemigrations
+
 $ python3 manage.py migrate
 
 ### Load data from fixtures
 
-$ python3 manage.py loaddata fixtures/<filename>.json
+$ python3 manage.py loaddata fixtures/filename.json
