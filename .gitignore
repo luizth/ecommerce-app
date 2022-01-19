@@ -10,6 +10,7 @@ admin/docker-compose.yaml
 # Data
 admin/.dbdata
 admin/db.sqlite3
+*.jpg
 
 # Migrations
 admin/users/migrations/
@@ -25,5 +26,7 @@ admin/users/migrations/__pycache__/
 admin/products/__pycache__/
 admin/products/migrations/__pycache__/
 
+admin/orders/__pycache__/
+admin/orders/migrations/__pycache__/
+
 tests/__pycache__/
-*.jpg
