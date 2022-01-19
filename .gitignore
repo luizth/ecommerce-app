@@ -7,7 +7,7 @@ venv/
 django-backend/venv/
 
 # Docker
-django-backend/admin/docker-compose.yaml
+# django-backend/admin/docker-compose.yaml
 
 # Data
 django-backend/admin/.dbdata
