@@ -1,8 +1,11 @@
+from django.core.files.storage import default_storage
 from rest_framework import generics, mixins, status
+from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from admin.pagination import CustomPagination
+from rest_framework.views import APIView
 from users.authentication import JWTAuthentication
 from .models import Product
 from .serializers import ProductSerializer
@@ -38,3 +41,18 @@ class ProductGenericAPIView(
 
     def delete(self, req, pk=None):
         return self.destroy(req, pk)
+
+
+class FileUploadView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    parser_classes = (MultiPartParser, )
+
+    def post(self, req):
+        file = req.FILES['image']
+        file_name = default_storage.save(file.name, file)
+        url = default_storage.url(file_name)
+
+        return Response({
+            'url': 'http://localhost:8000/api' + url
+        })

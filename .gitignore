@@ -26,3 +26,4 @@ admin/products/__pycache__/
 admin/products/migrations/__pycache__/
 
 tests/__pycache__/
+*.jpg
