@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from admin.pagination import CustomPagination
 from rest_framework.views import APIView
 from users.authentication import JWTAuthentication
+from users.permissions import ViewPermissions
 from .models import OrderItem, Order
 from .serializers import OrderSerializer
 
@@ -17,7 +18,8 @@ class OrderGenericAPIView(
     generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin
 ):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated & ViewPermissions]
+    permissions_object = 'orders'
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     pagination_class = CustomPagination

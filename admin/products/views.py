@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from admin.pagination import CustomPagination
 from rest_framework.views import APIView
 from users.authentication import JWTAuthentication
+from users.permissions import ViewPermissions
 from .models import Product
 from .serializers import ProductSerializer
 
@@ -16,7 +17,8 @@ class ProductGenericAPIView(
     mixins.UpdateModelMixin, mixins.DestroyModelMixin
 ):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated & ViewPermissions]
+    permissions_object = 'products'
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = CustomPagination
