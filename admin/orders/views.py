@@ -1,5 +1,6 @@
 import csv
 
+from django.db import connection
 from django.http import HttpResponse
 from rest_framework import generics, mixins
 from rest_framework.permissions import IsAuthenticated
@@ -51,3 +52,30 @@ class ExportAPIView(APIView):
                 writer.writerow(['', '', '', item.product_title, item.price, item.quantity])
 
         return response
+
+
+class ChartAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, _):
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                SELECT 
+                    DATE_FORMAT(o.created_at, '%Y-%m-%d') as date, 
+                    sum(i.quantity * i.price) as sum
+                FROM orders_order as o
+                JOIN orders_orderitem as i ON o.id = i.order_id
+                GROUP BY date
+            """)
+
+            result = cursor.fetchall()
+
+        data = [{
+            'date': row[0],
+            'sum': row[1]
+        } for row in result]
+
+        return Response({
+            'data': data
+        })
