@@ -1,32 +1,36 @@
 # IDE
 .idea/
+django-backend/.idea/
 
 # Environment
 venv/
+django-backend/venv/
 
 # Docker
-admin/docker-compose.yaml
+django-backend/admin/docker-compose.yaml
 
 # Data
-admin/.dbdata
-admin/db.sqlite3
+django-backend/admin/.dbdata
+django-backend/admin/db.sqlite3
 *.jpg
 
 # Migrations
-admin/users/migrations/
+django-backend/admin/users/migrations/
+django-backend/admin/products/migrations/
+django-backend/admin/orders/migrations/
 
 # Pycache
-admin/admin/__pycache__/
+django-backend/admin/admin/__pycache__/
 
-admin/users/__pycache__/
-admin/users/lib/__pycache__/
-admin/users/lib/utils/__pycache__/
-admin/users/migrations/__pycache__/
+django-backend/admin/users/__pycache__/
+django-backend/admin/users/lib/__pycache__/
+django-backend/admin/users/lib/utils/__pycache__/
+django-backend/admin/users/migrations/__pycache__/
 
-admin/products/__pycache__/
-admin/products/migrations/__pycache__/
+django-backend/admin/products/__pycache__/
+django-backend/admin/products/migrations/__pycache__/
 
-admin/orders/__pycache__/
-admin/orders/migrations/__pycache__/
+django-backend/admin/orders/__pycache__/
+django-backend/admin/orders/migrations/__pycache__/
 
-tests/__pycache__/
+django-backend/tests/__pycache__/
