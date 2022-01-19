@@ -1,4 +1,8 @@
-# django-ecommerce-app
+# ecommerce-app
+
+E-commerce app build with django on the back-end and react on the front-end
+
+It allows for login, users, roles and permissions; products, orders and cart.
 
 ## Execute the following for first time
 
