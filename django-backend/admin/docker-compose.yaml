@@ -1,7 +1,8 @@
 version: '3.8'
 services:
   admin_api:
-    container_name: django_api
+    container_name: django_admin_api
+    image: django_backend:latest
     build:
       context: .
       dockerfile: Dockerfile
