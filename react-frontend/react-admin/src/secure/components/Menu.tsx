@@ -5,9 +5,15 @@ const Menu = () => (
         <div className="position-sticky pt-3">
             <ul className="nav flex-column">
                 <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
+                    <a className="nav-link active" aria-current="page" href="/">
                     <span data-feather="home"></span>
                     Dashboard
+                    </a>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link active" aria-current="page" href="users">
+                    <span data-feather="home"></span>
+                    Users
                     </a>
                 </li>
             </ul>
