@@ -11,16 +11,14 @@ services:
     ports:
       - 8000:8000
     depends_on:
-      - admin_db
+      - db
 
-  admin_db:
+  db:
     container_name: django_admin_db
-    image: mysql:5.7.22
+    image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: django_admin
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: admin
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - .dbdata:/var/lib/mysql
